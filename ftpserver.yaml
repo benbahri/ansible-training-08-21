@@ -1,0 +1,11 @@
+---
+- name: install ftp server on non prod servers
+  hosts: all
+  become: yes
+  tasks:
+  - name: install vsftpd 
+    yum:
+      name: vsftpd
+    when: 
+    - ansible_facts['distribution'] == "CentOS"
+    - stage != "prod"

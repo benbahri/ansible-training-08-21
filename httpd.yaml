@@ -1,0 +1,15 @@
+---
+- name: manage httpd.conf
+  hosts: centos
+  become: yes
+  tasks:
+  - name: copy httpd.conf
+    copy:
+      src: httpd.conf
+      dest: /etc/httpd/conf/httpd.conf
+    notify: restart httpd service
+  handlers:
+  - name: restart httpd service
+    systemd:
+      name: httpd
+      state: restarted
