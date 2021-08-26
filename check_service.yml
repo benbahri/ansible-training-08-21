@@ -1,0 +1,9 @@
+---
+- name: restart service
+  hosts: centos
+  become: yes
+  tasks:
+  - name: restart service on hosts
+    systemd:
+      name: "{{service}}"
+      state: restarted
