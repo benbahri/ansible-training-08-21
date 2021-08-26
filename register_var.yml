@@ -1,0 +1,14 @@
+---
+- name: install package and prints the result
+  hosts: ubuntu
+  become: yes
+  tasks:
+  - name: install the package
+    apt: 
+      name: apache2
+      state: present
+    register: install_result
+  - name: show var value
+    debug: 
+      var: install_result
+      
